@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "dependencies": {
     "electron" : "*",
-    "status": "*"
+    "node-wmi" : "*",
+    "jquery": "*",
+    "mongodb": "*"
   }
 }
