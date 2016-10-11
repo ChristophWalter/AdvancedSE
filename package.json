@@ -4,6 +4,7 @@
   "dependencies": {
     "electron" : "*",
     "node-wmi" : "*",
-    "jquery": "*"
+    "jquery": "*",
+    "mongodb": "*"
   }
 }
