@@ -2,9 +2,27 @@
 
 [![Join the chat at https://gitter.im/Advanced_SE/Lobby](https://badges.gitter.im/Advanced_SE/Lobby.svg)](https://gitter.im/Advanced_SE/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-**Projektidee:**
+**System bzw. Anwendung:**
 
-Task Manager auf Basis von Electron, z.B. auslesen von Temperaturen, Tasks, ...
+Task Manager auf Basis von Electron, z.B. auslesen von Temperaturen, CPU usage usw.
+Außerdem historische Daten in Form von Diagrammen und eine Taskliste.
+
+
+**Server:**
+
+Node.js v6.7.0
+
+
+**Datenbank:**
+
+MongoDB
+
+
+**Frontend-Framework:**
+
+- Angular.js Version von Flat Admin V.3 (https://github.com/tui2tone/flat-admin-bootstrap-templates)
+- Angular.js
+
 
 **Installation mit Webstorm:**
 
@@ -14,3 +32,4 @@ Task Manager auf Basis von Electron, z.B. auslesen von Temperaturen, Tasks, ...
     - node-interpreter -> Add... -> '...\node_modules\.bin\electron.cmd'
     - JavaScript file -> main.js
 4. Run
+
