@@ -32,5 +32,6 @@ MongoDB
     - node-interpreter -> Add... -> '...\node_modules\.bin\electron.cmd'
     - JavaScript file -> main.js
 4. Herunterladen und ausführen von Open Hardware Monitor (http://openhardwaremonitor.org)
-5. Run
+5. Herunterladen und starten des FakeSMTP Servers (http://nilhcem.github.io/FakeSMTP/)
+6. Run
 
