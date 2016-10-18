@@ -4,6 +4,10 @@
 var Datastore = require('nedb');
 var db = new Datastore({ filename: '../db/temps.db', autoload: true });
 
+/**
+ * add timestamp to currentThermData and store it in database
+ * @param currentThermData
+ */
 var saveThermData = function(currentThermData) {
     var doc = {
         "timestamp": (new Date()).getTime(),
@@ -15,6 +19,10 @@ var saveThermData = function(currentThermData) {
     });
 };
 
+/**
+ * get history of last hours' temperature data
+ * @param callback
+ */
 var getThermHistory = function(callback) {
     cleanDatabase(db);
 
@@ -25,6 +33,10 @@ var getThermHistory = function(callback) {
     });
 };
 
+/**
+ * delete docs older than two hours from database
+ * @param db
+ */
 var cleanDatabase = function(db) {
     var twoHoursAgo = new Date();
     twoHoursAgo.setHours(twoHoursAgo.getHours()-2);
