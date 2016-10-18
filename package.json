@@ -2,9 +2,10 @@
   "name": "",
   "version": "0.0.1",
   "dependencies": {
-    "electron" : "*",
-    "node-wmi" : "*",
+    "electron": "*",
     "jquery": "*",
-    "mongodb": "*"
+    "mongodb": "*",
+    "node-wmi": "*",
+    "nodemailer": "^2.6.4"
   }
 }
