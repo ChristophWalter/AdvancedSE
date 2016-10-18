@@ -3,19 +3,16 @@
  */
 var wmi = require('node-wmi');
 const util = require('util');
-var tempDataDiv = document.getElementById("Tempdata");
 var thermalData;
 var thermalArray = [];
 
-var exec = require('child_process').exec;
-exec('NET SESSION', function(err,so,se) {
-    console.log(se.length === 0 ? "admin" : "not admin");
-});
-
-var getThermalData = function(){
+var updateWMIData = function(callback){
     wmi.Query().namespace('root\\OpenHardwareMonitor').class('Sensor').exec(function(err, data) {
         thermalData = data;
         evalThermalData();
+        if (callback != null){
+            return callback();
+        }
     });
 };
 
@@ -25,3 +22,21 @@ var evalThermalData = function () {
         thermalArray[dataset['Identifier']] = dataset['Value']
     }
 };
+
+
+var getCpuTemps= function (callback) {
+    updateWMIData(function () {
+        cpuTemps = [];
+        var i = 0;
+        for(key in thermalArray){
+            if(key.search("intelcpu/0/temperature") != -1){
+                cpuTemps[i]=thermalArray[key];
+            }
+            i++;
+        }
+        callback(cpuTemps);
+    });
+}
+
+exports.updateWMIData = updateWMIData;
+exports.getcpuTempArray = getCpuTemps;
