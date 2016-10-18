@@ -6,8 +6,8 @@
     "chart.js": "^2.3.0",
     "electron": "*",
     "jquery": "*",
-    "mongodb": "*",
     "node-wmi": "*",
-    "nodemailer": "^2.6.4"
+    "nodemailer": "^2.6.4",
+    "nedb": "*"
   }
 }

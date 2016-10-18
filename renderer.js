@@ -5,6 +5,7 @@ var cpuData = require('../AdvancedSE/Modules/CpuData');
 var processData = require('../AdvancedSE/Modules/ProcessData');
 var mail = require('./Modules/SendMail');
 var tempNotification = require('./Modules/SaveTempNotification');
+var thermLog = require('../AdvancedSE/Modules/ThermLog');
 
 cpuData.getcpuTempArray(function (temps) {
     console.log(temps);
@@ -33,6 +34,10 @@ var updateData = function () {
             document.getElementById('processes').innerHTML = "no running processes"
         }
     })
+    cpuData.getcpuTempArray(thermLog.saveThermData);
+    thermLog.getThermHistory(function(data) {
+        console.log(data);
+    });
 };
 setInterval(updateData,1000);
 
