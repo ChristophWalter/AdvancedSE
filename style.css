@@ -1,0 +1,22 @@
+.navbar{
+    margin-bottom: 0;
+}
+h3{
+    margin-top: 5px;
+    text-align: center;
+}
+#Tempdata{
+    text-align: center;
+    color: rgba(255,99,132,1);
+    font-size: 80pt;
+    margin-top: -20px;
+    margin-bottom: -20px;
+}
+
+.light{
+    color: darkgray;
+}
+
+.floatleft{
+    float: left;
+}

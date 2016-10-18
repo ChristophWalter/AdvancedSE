@@ -1,11 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Advanced Taskmanager</title>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <div id="Tempdata">Hallo Welt!</div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <button type="button" id="export" class="btn btn-default navbar-btn pull-right">Daten exportieren</button>
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Temperature Data</h3>
+                <div id="Tempdata">00°C</div>
+
+                <canvas id="tempChart" width="400" height="300"></canvas>
+
+                <div class="light">
+                    <span class="floatleft">E-Mail Benachrichtigung:</span>
+                    <div id="mail">#MAIL</div>
+                </div>
+                <div class="light">
+                    <span class="floatleft">Schwellwert: </span>
+                    <div id="threshold">#THRESHOLD</div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h3>Running Processes</h3>
+                <ul class="list-group" id="processes">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Morbi leo risus</li>
+                    <li class="list-group-item">Porta ac consectetur ac</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="renderer.js"></script>
+<script src="node_modules/chart.js/dist/Chart.js"></script>
+<script>
+    var ctx = document.getElementById("tempChart");
+    var tempChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["-120", "-100", "-80m", "-60m", "-40m", "-20m"],
+            datasets: [{
+                label: "CPU Temp",
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)'
+                ],
+                borderWidth: 1
+            }]
+        }
+    });
+</script>
 </html>
