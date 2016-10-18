@@ -12,18 +12,25 @@ cpuData.getcpuTempArray(function (temps) {
 
 processData.getAllProcesses(function (data) {
     console.log(data);
-})
+});
 
 var updateData = function () {
     cpuData.getcpuTempArray(function (temps) {
         tempPackage = temps[1];
         console.log('update');
-        document.getElementById('Tempdata').innerHTML = tempPackage + "°C";
+        if(tempPackage) {
+            document.getElementById('Tempdata').innerHTML = tempPackage + "°C";
+        }
     });
     processData.getAllProcesses(function (data) {
         document.getElementById('processes').innerHTML = "";
-        for(process in data){
-            document.getElementById('processes').innerHTML += "<li class=\"list-group-item\">"+ data[process]['Caption']+"<\/li>"
+        if(data) {
+            for (process in data) {
+                document.getElementById('processes').innerHTML += "<li class=\"list-group-item\">" + data[process]['Caption'] + "<\/li>"
+            }
+        }
+        else{
+            document.getElementById('processes').innerHTML = "no running processes"
         }
     })
 };
