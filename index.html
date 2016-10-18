@@ -9,36 +9,37 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <button type="button" id="export" class="btn btn-default navbar-btn pull-right">Daten exportieren</button>
-        </div><!-- /.container-fluid -->
-    </nav>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <button type="button" id="export" class="btn btn-default navbar-btn pull-right">Daten exportieren</button>
+    </div><!-- /.container-fluid -->
+</nav>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <h3>Temperature Data</h3>
-                <div id="Tempdata">00°C</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Temperature Data</h3>
+            <div id="Tempdata">00°C</div>
 
-                <canvas id="tempChart" width="400" height="300"></canvas>
+            <canvas id="tempChart" width="400" height="300"></canvas>
 
-                <div class="light">
-                    <span class="floatleft">E-Mail Benachrichtigung:</span>
-                    <div id="mail">#MAIL</div>
-                </div>
-                <div class="light">
-                    <span class="floatleft">Schwellwert: </span>
-                    <div id="threshold">#THRESHOLD</div>
-                </div>
+            <div class="form-group">
+                <label class="sr-only" for="emailInput">E-Mail</label>
+                E-Mail: <input type="email" class="form-control" id="emailInput" placeholder="E-Mail">
             </div>
-            <div class="col-sm-6">
-                <h3>Running Processes</h3>
-                <ul class="list-group" id="processes">
-                </ul>
+            <div class="form-group">
+                <label class="sr-only" for="valueInput">Schwellenwert</label>
+                Schwellenwert: <input type="number" class="form-control" id="valueInput" placeholder="Schwellenwert">
             </div>
+            <button id="tempButton" type="submit" class="btn btn-primary" onclick="tempButton()">speichern</button>
+        </div>
+        <div class="col-sm-6">
+            <h3>Running Processes</h3>
+            <ul class="list-group" id="processes">
+            </ul>
         </div>
     </div>
+</div>
 </body>
 <script src="renderer.js"></script>
 <script src="node_modules/chart.js/dist/Chart.js"></script>

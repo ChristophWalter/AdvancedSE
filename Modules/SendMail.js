@@ -16,11 +16,13 @@ var mailOptions = {
     text: '' // plaintext body
 };
 
-exports.send = function(notification, text){
+exports.send = function(notification){
+    //update mail options
     mailOptions.to=notification.email;
     mailOptions.text=
-        "Achtung, die Temperatur ist über "+
+        "Achtung, die Temperatur übersteigt "+
         notification.value+"°C";
+    
     // send mail with defined transport object
     transporter.sendMail(mailOptions, function(error, info){
         if(error){
