@@ -31,8 +31,8 @@ var getCpuTemps= function (callback) {
         for(key in thermalArray){
             if(key.search("intelcpu/0/temperature") != -1){
                 cpuTemps[i]=thermalArray[key];
+                i++;
             }
-            i++;
         }
         callback(cpuTemps);
     });
