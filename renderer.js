@@ -20,6 +20,12 @@ var updateData = function () {
         console.log('update');
         document.getElementById('Tempdata').innerHTML = tempPackage + "°C";
     });
+    processData.getAllProcesses(function (data) {
+        document.getElementById('processes').innerHTML = "";
+        for(process in data){
+            document.getElementById('processes').innerHTML += "<li class=\"list-group-item\">"+ data[process]['Caption']+"<\/li>"
+        }
+    })
 };
 setInterval(updateData,1000);
 
