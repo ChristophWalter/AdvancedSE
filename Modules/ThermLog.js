@@ -4,10 +4,10 @@
 var Datastore = require('nedb');
 var db = new Datastore({ filename: '../db/temps.db', autoload: true });
 
-var saveTemps = function(currentTemps) {
+var saveThermData = function(currentThermData) {
     var doc = {
         "timestamp": (new Date()).getTime(),
-        "temperatures": currentTemps
+        "temperatures": currentThermData
     };
 
     db.insert(doc, function (err, newDoc) {
@@ -15,7 +15,7 @@ var saveTemps = function(currentTemps) {
     });
 };
 
-var getLastHours = function(callback) {
+var getThermHistory = function(callback) {
     cleanDatabase(db);
 
     var dbEntry = {};
@@ -34,5 +34,5 @@ var cleanDatabase = function(db) {
     });
 };
 
-exports.saveTemps = saveTemps;
-exports.getLastHours = getLastHours;
+exports.saveThermData = saveThermData;
+exports.getThermHistory = getThermHistory;

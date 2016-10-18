@@ -3,7 +3,7 @@
  */
 var cpuData = require('../AdvancedSE/Modules/CpuData');
 var processData = require('../AdvancedSE/Modules/ProcessData');
-var tempLog = require('../AdvancedSE/Modules/TempLog');
+var thermLog = require('../AdvancedSE/Modules/ThermLog');
 
 cpuData.getcpuTempArray(function (temps) {
     console.log(temps);
@@ -32,8 +32,8 @@ var updateData = function () {
             document.getElementById('processes').innerHTML = "no running processes"
         }
     })
-    cpuData.getcpuTempArray(tempLog.saveTemps);
-    tempLog.getLastHours(function(data) {
+    cpuData.getcpuTempArray(thermLog.saveThermData);
+    thermLog.getThermHistory(function(data) {
         console.log(data);
     });
 };

@@ -15,7 +15,7 @@ Node.js v6.7.0
 
 **Datenbank:**
 
-MongoDB
+NeDB
 
 
 **Frontend-Framework:**
