@@ -3,6 +3,8 @@
  */
 var cpuData = require('../AdvancedSE/Modules/CpuData');
 var processData = require('../AdvancedSE/Modules/ProcessData');
+var mail = require('./Modules/SendMail');
+var tempNotification = require('./Modules/SaveTempNotification');
 
 cpuData.getcpuTempArray(function (temps) {
     console.log(temps);
@@ -20,3 +22,7 @@ var updateData = function () {
     });
 };
 setInterval(updateData,1000);
+
+//save and send email notifications
+tempNotification.save({email:"critical@taskmanager.de",value:35});
+mail.send(tempNotification.get());

@@ -7,6 +7,7 @@
     "electron": "*",
     "jquery": "*",
     "mongodb": "*",
-    "node-wmi": "*"
+    "node-wmi": "*",
+    "nodemailer": "^2.6.4"
   }
 }
