@@ -4,7 +4,7 @@
   "dependencies": {
     "electron": "*",
     "jquery": "*",
-    "mongodb": "*",
+    "nedb": "*",
     "node-wmi": "*",
     "nodemailer": "^2.6.4"
   }
