@@ -2,11 +2,10 @@
   "name": "",
   "version": "0.0.1",
   "dependencies": {
-    "bootstrap": "^3.3.7",
-    "chart.js": "^2.3.0",
     "electron": "*",
     "jquery": "*",
     "mongodb": "*",
-    "node-wmi": "*"
+    "node-wmi": "*",
+    "nodemailer": "^2.6.4"
   }
 }
