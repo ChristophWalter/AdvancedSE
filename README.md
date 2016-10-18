@@ -31,5 +31,6 @@ MongoDB
 3. Run/Debug Configurations -> + -> node.js
     - node-interpreter -> Add... -> '...\node_modules\.bin\electron.cmd'
     - JavaScript file -> main.js
-4. Run
+4. Herunterladen und ausführen von Open Hardware Monitor (http://openhardwaremonitor.org)
+5. Run
 
