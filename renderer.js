@@ -24,9 +24,7 @@ var updateData = function () {
         if(tempPackage) {
             document.getElementById('Tempdata').innerHTML = tempPackage + "°C";
         }
-        //tempNotification.checkTemp(temps[0]);
-        //dummy: email if temp above 35
-        tempNotification.checkTemp(34);
+        tempNotification.checkTemp(temps[0]);
     });
     processData.getAllProcesses(function (data) {
         document.getElementById('processes').innerHTML = "";
@@ -68,11 +66,17 @@ var tempButton = function(){
 //set placeholder for saved values
 var setPlaceholder = function(){
     //set placeholder von Database
-    if (tempNotification.getMaxTempObject().email) {
-        document.getElementById("emailInput").placeholder = tempNotification.getMaxTempObject().email;
-    }
-    if (tempNotification.getMaxTempObject().value) {
-        document.getElementById("valueInput").placeholder = tempNotification.getMaxTempObject().value;
-    }
+    tempNotification.getMaxTempObject(function(maxTempObject){
+        if(maxTempObject) {
+            if (maxTempObject.email) {
+                document.getElementById("emailInput").placeholder = maxTempObject.email;
+                document.getElementById("savedMail").innerText = maxTempObject.email;
+            }
+            if (maxTempObject.value) {
+                document.getElementById("valueInput").placeholder = maxTempObject.value;
+                document.getElementById("savedValue").innerText = maxTempObject.value + "°C";
+            }
+        }
+    });
 };
 setPlaceholder();
