@@ -58,9 +58,11 @@ var setPlaceholder = function(){
     //set placeholder von Database
     if (tempNotification.getMaxTempObject().email) {
         document.getElementById("emailInput").placeholder = tempNotification.getMaxTempObject().email;
+        document.getElementById("savedMail").innerText = tempNotification.getMaxTempObject().email;
     }
     if (tempNotification.getMaxTempObject().value) {
         document.getElementById("valueInput").placeholder = tempNotification.getMaxTempObject().value;
+        document.getElementById("savedValue").innerText = tempNotification.getMaxTempObject().value+"°C";
     }
 };
 setPlaceholder();
