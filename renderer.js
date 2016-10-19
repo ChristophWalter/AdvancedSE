@@ -3,6 +3,7 @@
  */
 var cpuData = require('../AdvancedSE/Modules/CpuData');
 var processData = require('../AdvancedSE/Modules/ProcessData');
+var exportExcelFile = require('../AdvancedSE/Modules/exportExcelFile');
 var tempNotification = require('./Modules/SaveTempNotification');
 var jQuery = require('jquery');
 
