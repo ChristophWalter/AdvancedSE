@@ -4,8 +4,8 @@
 
 **System bzw. Anwendung:**
 
-Task Manager auf Basis von Electron, z.B. auslesen von Temperaturen, CPU usage usw.
-Außerdem historische Daten in Form von Diagrammen und eine Taskliste.
+Erweiterter Task Manager auf Basis von Electron. Dafür werden aktuelle Temperaturdaten ausgelesen und angezeigt.
+Außerdem sind historische Temperatur Daten in einem Diagramm und die laufenden Prozesse in einer Liste zu sehen.
 
 
 **Server:**
@@ -18,10 +18,11 @@ Node.js v6.7.0
 MongoDB
 
 
-**Frontend-Framework:**
+**Frontend-Frameworks:**
 
-- Angular.js Version von Flat Admin V.3 (https://github.com/tui2tone/flat-admin-bootstrap-templates)
-- Angular.js
+- Bootstrap (http://getbootstrap.com)
+- Chart.js (http://www.chartjs.org)
+- jQuery (https://jquery.com)
 
 
 **Installation mit Webstorm:**
@@ -35,3 +36,11 @@ MongoDB
 5. Herunterladen und starten des FakeSMTP Servers (http://nilhcem.github.io/FakeSMTP/)
 6. Run
 
+
+**Team:**
+
+- Sedi Oben-Torks
+- Sascha Traub
+- Christoph Walter
+- Michael Wehrstein
+- Marcel Jakob
