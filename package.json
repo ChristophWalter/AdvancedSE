@@ -5,6 +5,7 @@
     "bootstrap": "^3.3.7",
     "chart.js": "^2.3.0",
     "electron": "*",
+    "exceljs": "^0.2.29",
     "jquery": "*",
     "node-wmi": "*",
     "nodemailer": "^2.6.4",
