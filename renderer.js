@@ -3,8 +3,10 @@
  */
 var cpuData = require('../AdvancedSE/Modules/CpuData');
 var processData = require('../AdvancedSE/Modules/ProcessData');
+var mail = require('./Modules/SendMail');
 var exportExcelFile = require('../AdvancedSE/Modules/exportExcelFile');
 var tempNotification = require('./Modules/SaveTempNotification');
+var thermLog = require('../AdvancedSE/Modules/ThermLog');
 var jQuery = require('jquery');
 
 cpuData.getcpuTempArray(function (temps) {
@@ -39,6 +41,15 @@ var updateData = function () {
     })
 };
 setInterval(updateData,1000);
+
+var updateThermData = function () {
+    cpuData.getcpuTempArray(thermLog.saveThermData);
+    thermLog.getThermHistory(function(data) {
+        console.log(data);
+    });
+};
+setInterval(updateThermData, 5000);
+
 
 //input button function
 var tempButton = function(){
