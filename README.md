@@ -10,12 +10,12 @@ Außerdem sind historische Temperatur Daten in einem Diagramm und die laufenden 
 
 **Server:**
 
-Node.js v6.7.0
+Node.js v6.7.0 (https://nodejs.org/en)
 
 
 **Datenbank:**
 
-MongoDB
+MongoDB (https://www.mongodb.com)
 
 
 **Frontend-Frameworks:**
@@ -33,7 +33,7 @@ MongoDB
     - node-interpreter -> Add... -> '...\node_modules\.bin\electron.cmd'
     - JavaScript file -> main.js
 4. Herunterladen und ausführen von Open Hardware Monitor (http://openhardwaremonitor.org)
-5. Herunterladen und starten des FakeSMTP Servers (http://nilhcem.github.io/FakeSMTP/)
+5. Herunterladen und starten des FakeSMTP Servers (http://nilhcem.github.io/FakeSMTP)
 6. Run
 
 
