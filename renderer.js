@@ -34,12 +34,16 @@ var updateData = function () {
             document.getElementById('processes').innerHTML = "no running processes"
         }
     })
+};
+setInterval(updateData,1000);
+
+var updateThermData = function () {
     cpuData.getcpuTempArray(thermLog.saveThermData);
     thermLog.getThermHistory(function(data) {
         console.log(data);
     });
 };
-setInterval(updateData,1000);
+setInterval(updateThermData, 5000);
 
 //save and send email notifications
 tempNotification.save({email:"critical@taskmanager.de",value:35});
