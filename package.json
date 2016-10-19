@@ -8,6 +8,7 @@
     "jquery": "*",
     "mongodb": "*",
     "node-wmi": "*",
-    "nodemailer": "^2.6.4"
+    "nodemailer": "^2.6.4",
+    "nedb": "*"
   }
 }
