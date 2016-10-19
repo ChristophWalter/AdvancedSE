@@ -2,11 +2,22 @@
  * Created by CWalt on 18.10.2016.
  */
 var mail = require('./SendMail');
+var Datastore = require('nedb');
+
 var isSend = false;
+var dbn = new Datastore({ filename: '../db/notification.db', autoload: true });
 
 var saveMaxTempObject = function(notification){
     //save notification to db
-    //dummy:
+    var doc = {
+        timestamp: (new Date()).getTime(),
+        email: notification.email,
+        value: notification.value
+    };
+
+    dbn.insert(doc, function (err, newDoc) {
+        if (err) { console.error(err); }
+    });
     console.log("gespeichert! \nE-Mail: "+notification.email+" \nWert: "+notification.value);
 };
 
