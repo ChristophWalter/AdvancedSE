@@ -5,6 +5,7 @@ var cpuData = require('../AdvancedSE/Modules/CpuData');
 var processData = require('../AdvancedSE/Modules/ProcessData');
 var mail = require('./Modules/SendMail');
 var tempNotification = require('./Modules/SaveTempNotification');
+var jQuery = require('jquery');
 
 cpuData.getcpuTempArray(function (temps) {
     console.log(temps);
@@ -17,7 +18,7 @@ processData.getAllProcesses(function (data) {
 var updateData = function () {
     cpuData.getcpuTempArray(function (temps) {
         tempPackage = temps[1];
-        console.log('update');
+        //console.log('update');
         if(tempPackage) {
             document.getElementById('Tempdata').innerHTML = tempPackage + "°C";
         }
@@ -30,7 +31,7 @@ var updateData = function () {
             }
         }
         else{
-            document.getElementById('processes').innerHTML = "no running processes"
+            document.getElementById('processes').innerHTML = "keine laufende Prozesse"
         }
     })
 };
