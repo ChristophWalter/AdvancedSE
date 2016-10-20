@@ -63,7 +63,7 @@ var updateThermData = function () {
     });
 };
 updateThermData();
-setInterval(updateThermData, 1000);
+setInterval(updateThermData, 60000);
 
 
 //input button function
