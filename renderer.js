@@ -41,9 +41,19 @@ var updateData = function () {
 setInterval(updateData,1000);
 
 var updateThermData = function () {
+    var i = 0;
     cpuData.getcpuTempArray(thermLog.saveThermData);
     thermLog.getThermHistory(function(data) {
         console.log(data);
+        if(data && data.length > 6) {
+            for(var dataset in data.slice(0, 5)){
+                if(dataset.temperatures) {
+                    tempData[i] = dataset.temperatures[0];
+                    i++;
+                }
+            }
+            tempChart.update();
+        }
     });
 };
 setInterval(updateThermData, 5000);
