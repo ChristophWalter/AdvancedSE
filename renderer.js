@@ -48,13 +48,13 @@ var updateThermData = function () {
     thermLog.getThermHistory(function(data) {
         for (var i=0; i<data.length; i++) {
             var dataset = data[i];
-            if (dataset.temperatures && dataset.temperatures > 0) {
+            if (dataset.temperatures && dataset.temperatures[0] > 0) {
                 var gesTemp = dataset.temperatures.length - 1;
                 var label = Math.floor(((new Date).getTime() - dataset.timestamp) / 60000);
-                tempData[i] = dataset.temperatures[gesTemp];
+                tempData[i] = dataset.temperatures[0];
                 tempLabels[i] = "-" + label;
             } else {
-                var label = Math.floor((Date.now() - dataset.timestamp) / 60000);
+                var label = Math.floor(((new Date).getTime() - dataset.timestamp) / 60000);
                 tempData[i] = 0;
                 tempLabels[i] = "-" + label + "min";
             }
@@ -62,7 +62,7 @@ var updateThermData = function () {
         tempChart.update();
     });
 };
-setInterval(updateThermData, 60000);
+setInterval(updateThermData, 1000);
 
 
 //input button function
