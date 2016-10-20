@@ -28,11 +28,11 @@
 
                 <div class="light">
                     <span class="floatleft">E-Mail Benachrichtigung:</span>
-                    <div id="mail">#MAIL</div>
+                    <p id="savedMail"></p>
                 </div>
                 <div class="light">
                     <span class="floatleft">Schwellwert: </span>
-                    <div id="threshold">#THRESHOLD</div>
+                    <p id="savedValue"></p>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -62,8 +62,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="tempButton" type="submit" class="btn btn-primary" onclick="tempButton()">speichern</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="tempButton" type="submit" class="btn btn-primary" onclick="tempButton()" data-dismiss="modal">speichern</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
                 </div>
             </div>
         </div>
