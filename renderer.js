@@ -60,7 +60,8 @@ var updateThermData = function () {
         tempChart.update();
     });
 };
-setInterval(updateThermData, 1000);
+updateThermData();
+setInterval(updateThermData, 60000);
 
 
 //input button function
