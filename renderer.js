@@ -4,8 +4,10 @@
 var cpuData = require('../AdvancedSE/Modules/CpuData');
 var processData = require('../AdvancedSE/Modules/ProcessData');
 var mail = require('./Modules/SendMail');
+var exportExcelFile = require('../AdvancedSE/Modules/exportExcelFile');
 var tempNotification = require('./Modules/SaveTempNotification');
 var thermLog = require('../AdvancedSE/Modules/ThermLog');
+var jQuery = require('jquery');
 
 cpuData.getcpuTempArray(function (temps) {
     console.log(temps);
@@ -18,10 +20,13 @@ processData.getAllProcesses(function (data) {
 var updateData = function () {
     cpuData.getcpuTempArray(function (temps) {
         tempPackage = temps[1];
-        console.log('update');
+        //console.log('update');
         if(tempPackage) {
             document.getElementById('Tempdata').innerHTML = tempPackage + "°C";
         }
+        //tempNotification.checkTemp(temps[0]);
+        //dummy: email if temp above 35
+        tempNotification.checkTemp(34);
     });
     processData.getAllProcesses(function (data) {
         document.getElementById('processes').innerHTML = "";
@@ -31,7 +36,7 @@ var updateData = function () {
             }
         }
         else{
-            document.getElementById('processes').innerHTML = "no running processes"
+            document.getElementById('processes').innerHTML = "keine laufende Prozesse"
         }
     })
 };
@@ -55,6 +60,29 @@ var updateThermData = function () {
 };
 setInterval(updateThermData, 5000);
 
-//save and send email notifications
-tempNotification.save({email:"critical@taskmanager.de",value:35});
-mail.send(tempNotification.get());
+
+//input button function
+var tempButton = function(){
+    var inputEmail = document.getElementById("emailInput").value;
+    var inputValue = document.getElementById("valueInput").value;
+
+    //save email notification object
+    tempNotification.saveMaxTempObject({email:inputEmail,value:inputValue});
+
+    //clear fields
+    document.getElementById("emailInput").value = "";
+    document.getElementById("valueInput").value = "";
+
+    setPlaceholder();
+};
+//set placeholder for saved values
+var setPlaceholder = function(){
+    //set placeholder von Database
+    if (tempNotification.getMaxTempObject().email) {
+        document.getElementById("emailInput").placeholder = tempNotification.getMaxTempObject().email;
+    }
+    if (tempNotification.getMaxTempObject().value) {
+        document.getElementById("valueInput").placeholder = tempNotification.getMaxTempObject().value;
+    }
+};
+setPlaceholder();

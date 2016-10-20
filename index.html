@@ -9,58 +9,89 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <button type="button" id="export" class="btn btn-default navbar-btn pull-right">Daten exportieren</button>
-    </div><!-- /.container-fluid -->
-</nav>
-
-<div class="container">
-    <div class="row">
-        <div class="col-sm-6">
-            <h3>Temperature Data</h3>
-            <div id="Tempdata">00°C</div>
-
-            <canvas id="tempChart" width="400" height="300"></canvas>
-
-            <div class="form-group">
-                <label class="sr-only" for="emailInput">E-Mail</label>
-                E-Mail: <input type="email" class="form-control" id="emailInput" placeholder="E-Mail">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="pull-right">
+                <button type="button" id="notification" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#mailModal">Benachrichtigung</button>
+                <button type="button" id="export" onclick="exportExcelFile.exportExcelFile()" class="btn btn-default navbar-btn">Daten exportieren</button>
             </div>
-            <div class="form-group">
-                <label class="sr-only" for="valueInput">Schwellenwert</label>
-                Schwellenwert: <input type="number" class="form-control" id="valueInput" placeholder="Schwellenwert">
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Temperatur Daten</h3>
+                <div id="Tempdata">00°C</div>
+
+                <canvas id="tempChart" width="400" height="300"></canvas>
+
+                <div class="light">
+                    <span class="floatleft">E-Mail Benachrichtigung:</span>
+                    <div id="mail">#MAIL</div>
+                </div>
+                <div class="light">
+                    <span class="floatleft">Schwellwert: </span>
+                    <div id="threshold">#THRESHOLD</div>
+                </div>
             </div>
-            <button id="tempButton" type="submit" class="btn btn-primary" onclick="tempButton()">speichern</button>
-        </div>
-        <div class="col-sm-6">
-            <h3>Running Processes</h3>
-            <ul class="list-group" id="processes">
-            </ul>
+            <div class="col-sm-6">
+                <h3>Laufende Prozesse</h3>
+                <ul class="list-group" id="processes">
+                </ul>
+            </div>
         </div>
     </div>
-</div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="mailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">E-Mail Benachrichtigung</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="sr-only" for="emailInput">E-Mail</label>
+                        E-Mail: <input type="email" class="form-control" id="emailInput" placeholder="E-Mail">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="valueInput">Schwellenwert</label>
+                        Schwellenwert: <input type="number" class="form-control" id="valueInput" placeholder="Schwellenwert">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="tempButton" type="submit" class="btn btn-primary" onclick="tempButton()">speichern</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="renderer.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/chart.js/dist/Chart.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+        tempData = [0, 0, 0, 0, 0, 0];
+        var ctx = document.getElementById("tempChart");
+        var tempChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["-120", "-100", "-80m", "-60m", "-40m", "-20m"],
+                datasets: [{
+                    label: "CPU Temp",
+                    data: tempData,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)'
+                    ],
+                    borderWidth: 1
+                }]
+            }
+        });
+    </script>
 </body>
-<script src="renderer.js"></script>
-<script src="node_modules/chart.js/dist/Chart.js"></script>
-<script>
-    var ctx = document.getElementById("tempChart");
-    var tempChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ["-120", "-100", "-80m", "-60m", "-40m", "-20m"],
-            datasets: [{
-                label: "CPU Temp",
-                data: [0, 0, 0, 0, 0, 0],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)'
-                ],
-                borderWidth: 1
-            }]
-        }
-    });
-</script>
 </html>
