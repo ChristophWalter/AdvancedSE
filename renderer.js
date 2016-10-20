@@ -10,11 +10,11 @@ var thermLog = require('../AdvancedSE/Modules/ThermLog');
 var jQuery = require('jquery');
 
 cpuData.getcpuTempArray(function (temps) {
-    console.log(temps);
+//    console.log(temps);
 });
 
 processData.getAllProcesses(function (data) {
-    console.log(data);
+//    console.log(data);
 });
 
 var updateData = function () {
@@ -44,19 +44,23 @@ var updateThermData = function () {
     var i = 0;
     cpuData.getcpuTempArray(thermLog.saveThermData);
     thermLog.getThermHistory(function(data) {
-        console.log(data);
-        if(data && data.length > 6) {
-            for(var dataset in data.slice(0, 5)){
-                if(dataset.temperatures) {
-                    tempData[i] = dataset.temperatures[0];
-                    i++;
-                }
+        for (var i=0; i<data.length; i++) {
+            var dataset = data[i];
+            if (dataset.temperatures && dataset.temperatures > 0) {
+                var gesTemp = dataset.temperatures.length - 1;
+                var label = Math.floor(((new Date).getTime() - dataset.timestamp) / 60000);
+                tempData[i] = dataset.temperatures[gesTemp];
+                tempLabels[i] = "-" + label;
+            } else {
+                var label = Math.floor((Date.now() - dataset.timestamp) / 60000);
+                tempData[i] = 0;
+                tempLabels[i] = "-" + label + "min";
             }
-            tempChart.update();
         }
+        tempChart.update();
     });
 };
-setInterval(updateThermData, 5000);
+setInterval(updateThermData, 60000);
 
 
 //input button function
