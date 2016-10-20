@@ -24,7 +24,9 @@ var updateData = function () {
         if(tempPackage) {
             document.getElementById('Tempdata').innerHTML = tempPackage + "°C";
         }
-        tempNotification.checkTemp(temps[1]);
+        //tempNotification.checkTemp(temps[0]);
+        //dummy: email if temp above 35
+        tempNotification.checkTemp(34);
     });
     processData.getAllProcesses(function (data) {
         document.getElementById('processes').innerHTML = "";
@@ -61,7 +63,7 @@ var updateThermData = function () {
     });
 };
 updateThermData();
-setInterval(updateThermData, 60000);
+setInterval(updateThermData, 1000);
 
 
 //input button function
