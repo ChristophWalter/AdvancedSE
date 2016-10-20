@@ -54,7 +54,7 @@ var updateThermData = function () {
             } else {
                 var label = Math.floor(((new Date).getTime() - dataset.timestamp) / 60000);
                 tempData[i] = 0;
-                tempLabels[i] = "-" + label + "min";
+                tempLabels[i] = "-" + label;
             }
         }
         tempChart.update();

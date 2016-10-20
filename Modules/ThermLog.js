@@ -2,7 +2,7 @@
  * created by wehrstein on 18.10.16
  */
 var Datastore = require('nedb');
-var db = new Datastore({ filename: '../db/temps.db', autoload: true });
+var db = new Datastore({ filename: './db/temps.db', autoload: true });
 
 /**
  * add timestamp to currentThermData and store it in database
