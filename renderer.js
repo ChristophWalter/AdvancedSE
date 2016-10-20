@@ -24,7 +24,7 @@ var updateData = function () {
         if(tempPackage) {
             document.getElementById('Tempdata').innerHTML = tempPackage + "°C";
         }
-        tempNotification.checkTemp(temps[0]);
+        tempNotification.checkTemp(temps[1]);
     });
     processData.getAllProcesses(function (data) {
         document.getElementById('processes').innerHTML = "";
@@ -78,14 +78,11 @@ var setPlaceholder = function(){
     //set placeholder von Database
     tempNotification.getMaxTempObject(function(maxTempObject){
         if(maxTempObject) {
-            if (maxTempObject.email) {
                 document.getElementById("emailInput").placeholder = maxTempObject.email;
                 document.getElementById("savedMail").innerText = maxTempObject.email;
-            }
-            if (maxTempObject.value) {
+
                 document.getElementById("valueInput").placeholder = maxTempObject.value;
                 document.getElementById("savedValue").innerText = maxTempObject.value + "°C";
-            }
         }
     });
 };
