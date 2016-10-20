@@ -25,10 +25,13 @@ var saveThermData = function(currentThermData) {
  */
 var getThermHistory = function(callback) {
     cleanDatabase(db);
-
-    var dbEntry = {};
     db.find({}, function(err, docs) {
         if (err) { console.error(err); }
+        docs.sort(function(a, b) {
+            if (a.timestamp < b.timestamp) { return -1; }
+            if (a.timestamp > b.timestamp) { return 1; }
+            return 0;}
+        );
         callback(docs);
     });
 };
@@ -42,6 +45,16 @@ var cleanDatabase = function(db) {
     twoHoursAgo.setHours(twoHoursAgo.getHours()-2);
     twoHoursAgo = twoHoursAgo.getTime();
     db.remove({ "timestamp": { $lt: twoHoursAgo } }, { multi: true }, function(err, numRemoved) {
+        if (err) { console.error(err); }
+    });
+};
+
+/**
+ * delete all docs from database
+ * @param db
+ */
+var deleteAllDbEntries = function(db) {
+    db.remove({}, { multi: true }, function(err, numRemoved) {
         if (err) { console.error(err); }
     });
 };

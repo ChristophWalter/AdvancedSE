@@ -28,11 +28,11 @@
 
                 <div class="light">
                     <span class="floatleft">E-Mail Benachrichtigung:</span>
-                    <p id="savedMail"></p>
+                    <span id="savedMail"></span><br>
                 </div>
                 <div class="light">
                     <span class="floatleft">Schwellwert: </span>
-                    <p id="savedValue"></p>
+                    <span id="savedValue"></span><br>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -73,12 +73,13 @@
     <script src="node_modules/chart.js/dist/Chart.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script>
-        tempData = [0, 0, 0, 0, 0, 0];
+        tempData = [0];
+        tempLabels = [0];
         var ctx = document.getElementById("tempChart");
         var tempChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ["-120", "-100", "-80m", "-60m", "-40m", "-20m"],
+                labels: tempLabels,
                 datasets: [{
                     label: "CPU Temp",
                     data: tempData,
@@ -90,6 +91,15 @@
                     ],
                     borderWidth: 1
                 }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
             }
         });
     </script>
