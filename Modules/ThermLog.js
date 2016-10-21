@@ -34,6 +34,48 @@ var getThermHistory = function(callback) {
         );
         callback(docs);
     });
+    getTempArray();
+};
+
+/**
+ * get temperature from last two hours with 20min frames
+ * @param callback
+ */
+var getTempArray = function(callback) {
+    cleanDatabase(db);
+
+    var ts = (new Date()).getTime();
+    var tempArray = [];
+    for(var i=0;i<=120;i=i+20) {
+        ts = ts-(i*60*1000);
+        getTempEntry(function(entry){
+            if(entry.temperatures[0]) {
+                tempArray.push(entry.temperatures[0]);
+            }
+            else{
+                tempArray.push(0);
+            }
+        },ts);
+    }
+    while(tempArray.length != 7){
+
+        console.log(tempArray);
+    }
+    //return tempArray;
+};
+
+var getTempEntry = function(callback,ts){
+    db.findOne({$and:[{timestamp: {$gt: ts-10000}}]}, function (err, docs) {
+        if (err) {
+            console.error(err);
+        }
+        if(docs) {
+            callback(docs);
+        }
+        else{
+            callback(0);
+        }
+    });
 };
 
 /**
