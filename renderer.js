@@ -4,38 +4,93 @@
 var cpuData = require('../AdvancedSE/Modules/CpuData');
 var processData = require('../AdvancedSE/Modules/ProcessData');
 var mail = require('./Modules/SendMail');
+var exportExcelFile = require('../AdvancedSE/Modules/exportExcelFile');
 var tempNotification = require('./Modules/SaveTempNotification');
+var thermLog = require('../AdvancedSE/Modules/ThermLog');
+var jQuery = require('jquery');
+var processList = "";
 
 cpuData.getcpuTempArray(function (temps) {
-    console.log(temps);
+//    console.log(temps);
 });
 
 processData.getAllProcesses(function (data) {
-    console.log(data);
+//    console.log(data);
 });
 
 var updateData = function () {
     cpuData.getcpuTempArray(function (temps) {
         tempPackage = temps[1];
-        console.log('update');
+        //console.log('update');
         if(tempPackage) {
             document.getElementById('Tempdata').innerHTML = tempPackage + "°C";
         }
+        tempNotification.checkTemp(temps[1]);
     });
     processData.getAllProcesses(function (data) {
-        document.getElementById('processes').innerHTML = "";
+        processList = "";
         if(data) {
             for (process in data) {
-                document.getElementById('processes').innerHTML += "<li class=\"list-group-item\">" + data[process]['Caption'] + "<\/li>"
+                processList += "<li class=\"list-group-item\">" + data[process]['Caption'] + "<\/li>"
             }
+            document.getElementById('processes').innerHTML = processList;
         }
         else{
-            document.getElementById('processes').innerHTML = "no running processes"
+            document.getElementById('processes').innerHTML = "keine laufende Prozesse"
         }
     })
 };
 setInterval(updateData,1000);
 
-//save and send email notifications
-tempNotification.save({email:"critical@taskmanager.de",value:35});
-mail.send(tempNotification.get());
+var updateThermData = function () {
+    var i = 0;
+    cpuData.getcpuTempArray(thermLog.saveThermData);
+    thermLog.getThermHistory(function(data) {
+        for (var i=0; i<data.length; i++) {
+            var dataset = data[i];
+            if (dataset.temperatures && dataset.temperatures[0] > 0) {
+                var gesTemp = dataset.temperatures.length - 1;
+                var label = Math.floor(((new Date).getTime() - dataset.timestamp) / 60000);
+                tempData[i] = dataset.temperatures[0];
+                tempLabels[i] = "-" + label;
+            } else {
+                var label = Math.floor(((new Date).getTime() - dataset.timestamp) / 60000);
+                tempData[i] = 0;
+                tempLabels[i] = "-" + label;
+            }
+        }
+        tempChart.update();
+    });
+};
+updateThermData();
+setInterval(updateThermData, 5000);
+
+
+//input button function
+var tempButton = function(){
+    var inputEmail = document.getElementById("emailInput").value;
+    var inputValue = document.getElementById("valueInput").value;
+
+    //save email notification object
+    tempNotification.saveMaxTempObject({email:inputEmail,value:inputValue});
+
+    //clear fields
+    document.getElementById("emailInput").value = "";
+    document.getElementById("valueInput").value = "";
+
+    setPlaceholder();
+};
+//set placeholder for saved values
+var setPlaceholder = function(){
+    //set placeholder von Database
+    tempNotification.getMaxTempObject(function(maxTempObject){
+        if(maxTempObject) {
+                document.getElementById("emailInput").placeholder = maxTempObject.email;
+                document.getElementById("savedMail").innerText = maxTempObject.email;
+
+                document.getElementById("valueInput").placeholder = maxTempObject.value;
+                document.getElementById("savedValue").innerText = maxTempObject.value + "°C";
+        }
+    });
+};
+setPlaceholder();
