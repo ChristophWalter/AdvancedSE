@@ -8,6 +8,7 @@ var exportExcelFile = require('../AdvancedSE/Modules/exportExcelFile');
 var tempNotification = require('./Modules/SaveTempNotification');
 var thermLog = require('../AdvancedSE/Modules/ThermLog');
 var jQuery = require('jquery');
+var processList = "";
 
 cpuData.getcpuTempArray(function (temps) {
 //    console.log(temps);
@@ -27,11 +28,12 @@ var updateData = function () {
         tempNotification.checkTemp(temps[1]);
     });
     processData.getAllProcesses(function (data) {
-        document.getElementById('processes').innerHTML = "";
+        processList = "";
         if(data) {
             for (process in data) {
-                document.getElementById('processes').innerHTML += "<li class=\"list-group-item\">" + data[process]['Caption'] + "<\/li>"
+                processList += "<li class=\"list-group-item\">" + data[process]['Caption'] + "<\/li>"
             }
+            document.getElementById('processes').innerHTML = processList;
         }
         else{
             document.getElementById('processes').innerHTML = "keine laufende Prozesse"
@@ -61,7 +63,7 @@ var updateThermData = function () {
     });
 };
 updateThermData();
-setInterval(updateThermData, 60000);
+setInterval(updateThermData, 5000);
 
 
 //input button function
