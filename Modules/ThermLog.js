@@ -20,7 +20,7 @@ var saveThermData = function(currentThermData) {
 };
 
 /**
- * get history of last hours' temperature data
+ * get history of last two hours' temperature data
  * @param callback
  */
 var getThermHistory = function(callback) {
