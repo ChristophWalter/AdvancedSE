@@ -7,6 +7,7 @@ var cpuData = require('../Modules/CpuData');
 var processData = require('../Modules/ProcessData');
 var mail = require('../Modules/SendMail');
 var Excel = require("exceljs");
+var saveTempNotification = require('../Modules/SaveTempNotification');
 
 describe('Check if Hardware data is available', function() {
     it('testing cpu data retrival', function(done) {
@@ -79,6 +80,33 @@ describe('Test database functionalities', function() {
         var testTemp = 12;
         thermLog.saveThermData(testTemp, function(doc) {
             test.assert(doc.temperatures === testTemp);
+            done();
+        });
+    });
+});
+
+describe('Check DB actions', function() {
+    it('testing if max temp is saved', function(done){
+        //test notification
+        var notification = {
+            email: "test@test.com",
+            value: 50
+        };
+
+        saveTempNotification.saveMaxTempObject(notification, function (data) {
+            test
+                .string(data)
+                .is('success');
+            done();
+        });
+    });
+
+    it('testing max temp retrival', function(done) {
+        saveTempNotification.getMaxTempObject(function (data) {
+            test
+                .object(data)
+                .hasProperty('email')
+                .hasProperty('value');
             done();
         });
     });
