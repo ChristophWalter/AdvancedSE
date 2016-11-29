@@ -38,9 +38,9 @@ NeDB (https://github.com/louischatriot/nedb)
 
 **Testing:**
 
-1) in das `electron-mocha` modul Verzeichnis wechseln
-2) in `/bin` Ordner wechseln
-3) Befehl `node electron -mocha ../../../test_module` ausführen
+1. in das `electron-mocha` modul Verzeichnis wechseln
+2. in `/bin` Ordner wechseln
+3. Befehl `node electron -mocha ../../../test_module` ausführen
 
 **Team:**
 
