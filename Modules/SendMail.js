@@ -17,17 +17,24 @@ var mailOptions = {
 };
 
 exports.send = function(notification){
-    //update mail options
-    mailOptions.to=notification.email;
-    mailOptions.text=
-        "Achtung, die Temperatur übersteigt "+
-        notification.value+"°C";
-    
-    // send mail with defined transport object
-    transporter.sendMail(mailOptions, function(error, info){
-        if(error){
-            return console.log(error);
-        }
-        console.log('Message sent: '+info.response);
-    });
+    if(notification.email && notification.value){
+        //update mail options
+        mailOptions.to=notification.email;
+        mailOptions.text=
+            "Achtung, die Temperatur übersteigt "+
+            notification.value+"°C";
+
+        // send mail with defined transport object
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                console.log(error);
+            }
+            console.log('Message sent: '+info.response);
+        });
+        return "message sent";
+    }
+    else{
+        return "wrong parameter";
+    }
+
 };
