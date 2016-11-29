@@ -69,14 +69,14 @@ describe('Check if Mails can be sent', function() {
 });
 
 describe('Check DB actions', function() {
-    it('Check type of database entries (temperature)', function(done) {
+    it('testing type of database entries (temperature)', function(done) {
         thermLog.getThermHistory(function(value) {
             test.array(value);
             done();
         });
     });
 
-    it('Test db insert (temperature)', function(done) {
+    it('testing db insert (temperature)', function(done) {
         var testTemp = 12;
         thermLog.saveThermData(testTemp, function(doc) {
             test.assert(doc.temperatures === testTemp);
@@ -84,7 +84,7 @@ describe('Check DB actions', function() {
         });
     });
 
-    it('Test if max temp insert (threshold)', function(done){
+    it('testing if max temp insert (threshold)', function(done){
         //test notification
         var notification = {
             email: "test@test.com",
@@ -99,7 +99,7 @@ describe('Check DB actions', function() {
         });
     });
 
-    it('Test max temp retrival (threshold)', function(done) {
+    it('testing max temp retrival (threshold)', function(done) {
         saveTempNotification.getMaxTempObject(function (data) {
             test
                 .object(data)
