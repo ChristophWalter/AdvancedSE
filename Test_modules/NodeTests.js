@@ -6,7 +6,7 @@ var processData = require('../Modules/ProcessData')
 var test = require('unit.js');
 
 
-describe('Check if Hardwaer data is available', function() {
+describe('Check if Hardware data is available', function() {
     it('testing cpu data retrival', function(done) {
         cpuData.getcpuTempArray(function (data) {
             test.array(data)
@@ -19,5 +19,17 @@ describe('Check if Hardwaer data is available', function() {
             test.array(data).isNot([]);
             done();
         });
+    });
+
+    it('test if electron is working', function() {
+        const {app, BrowserWindow} = require('electron');
+        test.assert(app !== undefined);
+        test.assert(BrowserWindow != undefined);
+    });
+
+    it('test if window is opening', function() {
+        const {app, BrowserWindow} = require('electron');
+        var win = new BrowserWindow({width: 800, height: 600, frame: true});
+        test.assert(win !== undefined);
     });
 });
