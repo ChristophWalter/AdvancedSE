@@ -3,6 +3,7 @@
  */
 var cpuData = require('../Modules/CpuData');
 var processData = require('../Modules/ProcessData');
+var mail = require('../Modules/SendMail');
 var Excel = require("exceljs");
 var test = require('unit.js');
 
@@ -43,6 +44,29 @@ describe('Check if excel is accessible', function () {
     });
 
 });
+
+describe('Check if Mails can be sent', function() {
+    it('testing mail sending with right parameter', function() {
+        var parameter = {
+            email:"c.walter-95@gmx.de",
+            value:"60"
+        };
+        var response = mail.send(parameter);
+        test
+            .string(response)
+            .is('message sent');
+    });
+    it('testing mail sending with wrong parameters', function() {
+        var parameter = {
+            email:"c.walter-95@gmx.de"
+        };
+        var response = mail.send(parameter);
+        test
+            .string(response)
+            .is('wrong parameter');
+    });
+});
+
 
 
 
