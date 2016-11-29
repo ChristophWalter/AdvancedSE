@@ -21,13 +21,13 @@ var saveMaxTempObject = function(notification, callback){
                     callback(err);
                 }
                 else{
-                    console.log("Kein Eintrag vorhanden. Neuer Eintrag angelegt! \nE-Mail: "+notification.email+" \nWert: "+notification.value);
+                    //console.log("Kein Eintrag vorhanden. Neuer Eintrag angelegt! \nE-Mail: "+notification.email+" \nWert: "+notification.value);
                     callback("success");
                 }
             });
         }
         else{
-            console.log(numReplaced+" Dokument geupdated! \nE-Mail: "+notification.email+" \nWert: "+notification.value);
+            //console.log(numReplaced+" Dokument geupdated! \nE-Mail: "+notification.email+" \nWert: "+notification.value);
             callback("success");
         }
     });
