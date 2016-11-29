@@ -1,12 +1,12 @@
 /**
  * Created by traub on 29.11.2016.
  */
+var test = require('unit.js');
+var thermLog = require('../Modules/ThermLog');
 var cpuData = require('../Modules/CpuData');
 var processData = require('../Modules/ProcessData');
 var mail = require('../Modules/SendMail');
 var Excel = require("exceljs");
-var test = require('unit.js');
-
 
 describe('Check if Hardware data is available', function() {
     it('testing cpu data retrival', function(done) {
@@ -67,6 +67,19 @@ describe('Check if Mails can be sent', function() {
     });
 });
 
+describe('Test database functionalities', function() {
+    it('Check type of database entries', function(done) {
+        thermLog.getThermHistory(function(value) {
+            test.array(value);
+            done();
+        });
+    });
 
-
-
+    it('Test db insert', function(done) {
+        var testTemp = 12;
+        thermLog.saveThermData(testTemp, function(doc) {
+            test.assert(doc.temperatures === testTemp);
+            done();
+        });
+    });
+});
