@@ -2,14 +2,15 @@
  * Created by traub on 29.11.2016.
  */
 var cpuData = require('../Modules/CpuData');
-var processData = require('../Modules/ProcessData')
+var processData = require('../Modules/ProcessData');
+var Excel = require("exceljs");
 var test = require('unit.js');
 
 
 describe('Check if Hardware data is available', function() {
     it('testing cpu data retrival', function(done) {
         cpuData.getcpuTempArray(function (data) {
-            test.array(data)
+            test.array(data);
             done();
         })
     });
@@ -33,3 +34,15 @@ describe('Check if Hardware data is available', function() {
         test.assert(win !== undefined);
     });
 });
+
+describe('Check if excel is accessible', function () {
+
+    it('testing excel workbook build', function(){
+        var workbook = new Excel.Workbook();
+        test.object(workbook).isNotEmpty();
+    });
+
+});
+
+
+
