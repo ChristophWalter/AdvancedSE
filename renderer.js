@@ -21,6 +21,7 @@ processData.getAllProcesses(function (data) {
 var updateData = function () {
     cpuData.getcpuTempArray(function (temps) {
         tempPackage = temps[1];
+        console.log(temps);
         //console.log('update');
         if(tempPackage) {
             document.getElementById('Tempdata').innerHTML = tempPackage + "°C";

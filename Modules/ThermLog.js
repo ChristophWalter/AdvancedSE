@@ -8,7 +8,7 @@ var db = new Datastore({ filename: './db/temps.db', autoload: true });
  * add timestamp to currentThermData and store it in database
  * @param currentThermData
  */
-var saveThermData = function(currentThermData) {
+var saveThermData = function(currentThermData, callback) {
     var doc = {
         "timestamp": (new Date()).getTime(),
         "temperatures": currentThermData
@@ -16,6 +16,7 @@ var saveThermData = function(currentThermData) {
 
     db.insert(doc, function (err, newDoc) {
         if (err) { console.error(err); }
+        if (callback) { callback(newDoc); }
     });
 };
 
@@ -53,7 +54,7 @@ var cleanDatabase = function(db) {
  * delete all docs from database
  * @param db
  */
-var deleteAllDbEntries = function(db) {
+var deleteAllDbEntries = function() {
     db.remove({}, { multi: true }, function(err, numRemoved) {
         if (err) { console.error(err); }
     });
@@ -61,3 +62,4 @@ var deleteAllDbEntries = function(db) {
 
 exports.saveThermData = saveThermData;
 exports.getThermHistory = getThermHistory;
+exports.deleteAllDbEntries = deleteAllDbEntries;
