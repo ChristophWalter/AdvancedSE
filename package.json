@@ -9,6 +9,8 @@
     "jquery": "*",
     "node-wmi": "*",
     "nodemailer": "^2.6.4",
-    "nedb": "*"
+    "nedb": "*",
+    "unit.js": "*",
+    "electron-mocha" :"*"
   }
 }
