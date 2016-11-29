@@ -40,7 +40,7 @@ NeDB (https://github.com/louischatriot/nedb)
 
 1. in das `electron-mocha` modul Verzeichnis wechseln
 2. in `/bin` Ordner wechseln
-3. Befehl `node electron -mocha ../../../test_module` ausführen
+3. Befehl `node electron-mocha ../../../Test_modules` ausführen
 
 **Team:**
 
