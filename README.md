@@ -36,6 +36,11 @@ NeDB (https://github.com/louischatriot/nedb)
 5. Herunterladen und starten des FakeSMTP Servers (http://nilhcem.github.io/FakeSMTP)
 6. Run
 
+**Testing:**
+
+1) in das `electron-mocha` modul Verzeichnis wechseln
+2) in `/bin` Ordner wechseln
+3) Befehl `node electron -mocha ../../../test_module` ausführen
 
 **Team:**
 
