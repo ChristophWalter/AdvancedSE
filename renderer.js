@@ -3,6 +3,7 @@
  */
 var updater = require('./Modules/updater.js');
 var domManipulater = require('./Modules/domManipulater');
+var jQuery = require('jquery');
 
 setInterval(updater.data,1000);
 
