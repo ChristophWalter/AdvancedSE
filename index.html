@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="tempButton" type="submit" class="btn btn-primary" onclick="tempButton()" data-dismiss="modal">speichern</button>
+                    <button id="tempButton" type="submit" class="btn btn-primary" onclick="domManipulater.tempButton()" data-dismiss="modal">speichern</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
                 </div>
             </div>
@@ -72,52 +72,6 @@
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/chart.js/dist/Chart.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script>
-        tempData = [];
-        tempLabels = [];
-        var ctx = document.getElementById("tempChart");
-        var tempChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: tempLabels,
-                datasets: [{
-                    label: "CPU Temp",
-                    data: tempData,
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255,99,132,1)',
-                    pointRadius: 0,
-                    pointHoverRadius: 0,
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true,
-                            autoSkip: true
-                        },
-                        position: "right",
-                        scaleLabel: {
-                            display: true,
-                            labelString: "Temperatur in °C"
-                        }
-                    }],
-                    xAxes: [{
-                        scaleLabel: {
-                            display: true,
-                            labelString: "Minuten"
-                        },
-                        gridLines: {
-                            display: false
-                        },
-                        ticks:{
-                            display: false
-                        }
-                    }]
-                }
-            }
-        });
-    </script>
+    <script src="Modules/ChartInit.js"></script>
 </body>
 </html>
