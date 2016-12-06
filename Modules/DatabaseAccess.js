@@ -45,10 +45,15 @@ var insertTempsIntoDB = function (doc, callback) {
 };
 
 var getAllTempsFromDB = function (callback) {
-    db.find({}, function (err, docs) {
+    db.find({}, function(err, docs) {
         if (err) {
             console.error(err);
         }
+        docs.sort(function(a, b) {
+            if (a.timestamp < b.timestamp) { return -1; }
+            if (a.timestamp > b.timestamp) { return 1; }
+            return 0;}
+        );
         if (callback) {
             callback(docs);
         }
