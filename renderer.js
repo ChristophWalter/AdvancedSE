@@ -26,7 +26,7 @@ var updateData = function () {
         if(tempPackage) {
             document.getElementById('Tempdata').innerHTML = tempPackage + "°C";
         }
-        tempNotification.checkTemp(temps[1]);
+        tempNotification.checkTemp(30/*temps[1]*/);
     });
     processData.getAllProcesses(function (data) {
         processList = "";

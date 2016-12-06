@@ -76,7 +76,7 @@ describe('Check DB actions', function() {
         });
     });
 
-    it('testing db insert (temperature)', function(done) {
+    it('testing tempsDB insert (temperature)', function(done) {
         var testTemp = 12;
         thermLog.saveThermData(testTemp, function(doc) {
             test.assert(doc.temperatures === testTemp);
