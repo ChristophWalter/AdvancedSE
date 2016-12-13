@@ -3,3 +3,14 @@ before_script:
 language: node_js
 node_js:
   - "6.1"
+
+before_deploy:
+  - zip -r -q build .
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file: build.zip
+  skip_cleanup: true
+  on:
+    tags: true
