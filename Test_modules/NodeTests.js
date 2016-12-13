@@ -8,20 +8,31 @@ var processData = require('../Modules/ProcessData');
 var mail = require('../Modules/SendMail');
 var Excel = require("exceljs");
 var saveTempNotification = require('../Modules/SaveTempNotification');
+var os = require('os');
 
 describe('Check if Hardware data is available', function() {
     it('testing cpu data retrival', function(done) {
-        cpuData.getcpuTempArray(function (data) {
-            test.array(data);
+        if(os.platform() != "win32"){
             done();
-        })
+        }
+        else {
+            cpuData.getcpuTempArray(function (data) {
+                test.array(data);
+                done();
+            })
+        }
     });
 
     it('testing process data retrival', function(done) {
-        processData.getAllProcesses(function (data) {
-            test.array(data).isNot([]);
+        if(os.platform() != "win32"){
             done();
-        });
+        }
+        else {
+            processData.getAllProcesses(function (data) {
+                test.array(data).isNot([]);
+                done();
+            });
+        }
     });
 
     it('test if electron is working', function() {
