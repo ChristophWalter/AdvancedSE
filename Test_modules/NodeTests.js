@@ -24,15 +24,15 @@ describe('Check if Hardware data is available', function() {
     });
 
     it('testing process data retrival', function(done) {
-        //if(os.platform() != "win32"){
-        //    done();
-        //}
-        //else {
+        if(os.platform() != "win32"){
+            done();
+        }
+        else {
             processData.getAllProcesses(function (data) {
                 test.array(data).isNot([]);
                 done();
             });
-        //}
+        }
     });
 
     it('test if electron is working', function() {
