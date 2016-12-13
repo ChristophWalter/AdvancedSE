@@ -27,7 +27,7 @@ exports.send = function(notification){
         // send mail with defined transport object
         transporter.sendMail(mailOptions, function(error, info){
             if(error){
-                console.log(error);
+                //console.log(error);
             }
             console.log('Message sent: '+info.response);
         });

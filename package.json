@@ -12,5 +12,8 @@
     "nedb": "*",
     "unit.js": "*",
     "electron-mocha" :"*"
+  },
+  "scripts": {
+    "test": "node ./node_modules/electron-mocha/bin/electron-mocha ./Test_modules"
   }
 }
