@@ -41,6 +41,8 @@ NeDB (https://github.com/louischatriot/nedb)
 1. in das Root-Verzeichnis wechseln
 2. Befehl `node ./node_modules/electron-mocha/bin/electron-mocha ./Test_modules` ausführen
 
+**TravisCI**
+
 **Team:**
 
 - Sedi Oben-Torks
