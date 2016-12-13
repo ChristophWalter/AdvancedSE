@@ -42,6 +42,7 @@ NeDB (https://github.com/louischatriot/nedb)
 2. Befehl `node ./node_modules/electron-mocha/bin/electron-mocha ./Test_modules` ausführen
 
 **TravisCI**
+Push auf Master nur per Pull Request!
 
 **Team:**
 
